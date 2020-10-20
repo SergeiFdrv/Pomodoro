@@ -1,0 +1,29 @@
+﻿<Application x:Class="Pomodoro.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Pomodoro"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="BlackGlass" Color="Black" Opacity="0.8"/>
+        <Style x:Key="All" TargetType="Control">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="Win" TargetType="Window" BasedOn="{StaticResource All}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="SizeToContent" Value="Height"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource All}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="AcceptsReturn" Value="True"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource All}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource All}"/>
+    </Application.Resources>
+</Application>
