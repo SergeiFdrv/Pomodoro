@@ -8,10 +8,11 @@
         mc:Ignorable="d"
         Style="{StaticResource Win}"
         MouseDown="Window_MouseDown"
-        Title="MainWindow" Height="450" Width="800" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Resources/Il_pomodoro.png">
+        Title="MainWindow" Height="450" Width="800" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="CompactButton" Content="_" Padding="8, 0" Background="{DynamicResource BlackGlass}" Click="CompactButton_Click"/>
+            <Button x:Name="MinimizeButton" Content="_" Padding="8, 0" Background="{DynamicResource BlackGlass}" Click="MinimizeButton_Click"/>
+            <Button x:Name="CompactButton" Content="-" Padding="8, 0" Background="{DynamicResource BlackGlass}" Click="CompactButton_Click"/>
             <Button x:Name="CloseButton" Content="X" Padding="8, 0" Background="{DynamicResource BlackGlass}" Click="CloseButton_Click"/>
         </StackPanel>
         <Grid x:Name="MainGrid" Background="{DynamicResource BlackGlass}">
@@ -33,9 +34,9 @@
                 <Button x:Name="StartButton" Content="Start" Click="StartButton_Click"/>
                 <TextBlock x:Name="HintText" Text="{x:Static resources:Lang.DefaultHintText}" TextWrapping="Wrap"/>
             </StackPanel>
-            <Expander x:Name="AboutSection" Grid.Row="1" Grid.ColumnSpan="2" Margin="15, 0, 15, 15" Header="{x:Static resources:Lang.AboutHeader}">
+            <Expander x:Name="AboutSection" Grid.Row="1" Grid.ColumnSpan="2" Foreground="{DynamicResource WhiteText}" Margin="15, 0, 15, 15" Header="{x:Static resources:Lang.AboutHeader}">
                 <TextBlock TextWrapping="Wrap" FontSize="14" Text="{x:Static resources:Lang.About}"><LineBreak/>
-                    <Hyperlink NavigateUri="https://en.wikipedia.org/wiki/Pomodoro_Technique" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Hyperlink NavigateUri="https://en.wikipedia.org/wiki/Pomodoro_Technique" Foreground="{DynamicResource WhiteText}" RequestNavigate="Hyperlink_RequestNavigate">
                         <Run Text="{x:Static resources:Lang.MoreOnWikipedia}"/>
                     </Hyperlink>
                 </TextBlock>

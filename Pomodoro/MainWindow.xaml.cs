@@ -30,7 +30,7 @@ namespace Pomodoro
             SetTimer();
             Random random = new Random();
             App.Current.Resources["BlackGlass"] = new SolidColorBrush(Color.FromArgb((byte)(255 * 0.8),
-                (byte)random.Next(64), (byte)random.Next(64), (byte)random.Next(64)));
+                (byte)random.Next(96), (byte)random.Next(96), (byte)random.Next(96)));
             DispatcherTimer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 TimerText.Text = TimeSpan.ToString("c");
@@ -42,8 +42,8 @@ namespace Pomodoro
             };
         }
 
-        DispatcherTimer DispatcherTimer;
-        TimeSpan TimeSpan;
+        private readonly DispatcherTimer DispatcherTimer;
+        private TimeSpan TimeSpan;
 
         private int PomodoroNumber { get; set; }
         private async Task StopTimer()
@@ -60,6 +60,24 @@ namespace Pomodoro
             SystemSounds.Hand.Play();
             await Task.Delay(500);
             SystemSounds.Question.Play();
+            if (PomodoroNumber == 1)
+            {
+                await Task.Delay(60000 * 15);
+                if (!DispatcherTimer.IsEnabled)
+                {
+                    WindowState = WindowState.Normal;
+                    Activate();
+                }
+            }
+            else
+            {
+                await Task.Delay(60000 * 3);
+                if (!DispatcherTimer.IsEnabled)
+                {
+                    WindowState = WindowState.Normal;
+                    Activate();
+                }
+            }
         }
         
         private void SetTimer()
@@ -129,20 +147,28 @@ namespace Pomodoro
             {
                 if (IsCompactPrv = value)
                 {
+                    Top += Height / 2;
+                    Left += Width / 2;
                     TaskStack.Visibility = 
                     AboutSection.Visibility = 
                     HintText.Visibility = Visibility.Collapsed;
                     MainGrid.ColumnDefinitions[0].Width = GridLength.Auto;
                     SizeToContent = SizeToContent.WidthAndHeight;
+                    Top -= Height / 2;
+                    Left -= Width / 2;
                 }
                 else
                 {
+                    Top += Height / 2;
+                    Left += Width / 2;
                     TaskStack.Visibility =
                     AboutSection.Visibility =
                     HintText.Visibility = Visibility.Visible;
                     MainGrid.ColumnDefinitions[0].Width = new GridLength(1, GridUnitType.Star);
                     SizeToContent = SizeToContent.Height;
                     Width = 800;
+                    Top -= Height / 2;
+                    Left -= Width / 2;
                 }
             }
         }
@@ -150,6 +176,11 @@ namespace Pomodoro
         private void CompactButton_Click(object sender, RoutedEventArgs e)
         {
             IsCompact = !IsCompact;
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = (WindowState == WindowState.Minimized) ? WindowState.Normal : WindowState.Minimized;
         }
     }
 }

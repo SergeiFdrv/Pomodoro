@@ -5,24 +5,27 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="BlackGlass" Color="Black" Opacity="0.8"/>
+        <SolidColorBrush x:Key="WhiteText" Color="White" Opacity="1"/>
         <Style x:Key="All" TargetType="Control">
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="{DynamicResource WhiteText}"/>
         </Style>
         <Style x:Key="Win" TargetType="Window" BasedOn="{StaticResource All}">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="SizeToContent" Value="Height"/>
         </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource WhiteText}"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
         <Style TargetType="TextBox" BasedOn="{StaticResource All}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource WhiteText}" />
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="AcceptsReturn" Value="True"/>
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource All}">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style TargetType="CheckBox" BasedOn="{StaticResource All}"/>
     </Application.Resources>
