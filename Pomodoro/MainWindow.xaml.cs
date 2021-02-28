@@ -29,8 +29,7 @@ namespace Pomodoro
             InitializeComponent();
             SetTimer();
             Random random = new Random();
-            App.Current.Resources["BlackGlass"] = new SolidColorBrush(Color.FromArgb((byte)(255 * 0.8),
-                (byte)random.Next(96), (byte)random.Next(96), (byte)random.Next(96)));
+            App.Repaint("BlackGlass");
             DispatcherTimer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 TimerText.Text = TimeSpan.ToString("c");
